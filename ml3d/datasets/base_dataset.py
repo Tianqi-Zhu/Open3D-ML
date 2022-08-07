@@ -82,7 +82,7 @@ class BaseDataset(ABC):
 
     @abstractmethod
     def is_tested(self, attr):
-        """Checks whether a datum has been tested.
+        """Checks whether a datum has been tested. 
 
         Args:
             attr: The attributes associated with the datum.

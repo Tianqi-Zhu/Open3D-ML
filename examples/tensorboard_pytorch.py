@@ -44,7 +44,7 @@ def semantic_segmentation(DEMO_DATA_DIR):
         0: 'unlabeled',
         1: 'car',
         2: 'bicycle',
-        3: 'motorcycle',
+        3: 'motorcy0cle',
         4: 'truck',
         5: 'other-vehicle',
         6: 'person',
