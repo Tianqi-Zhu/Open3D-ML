@@ -47,7 +47,10 @@ class BaseDataset(ABC):
 
     def __init__(self, **kwargs):
         """Initialize the class by passing the dataset path."""
+        print(0)
+        print(kwargs)
         if kwargs['dataset_path'] is None:
+            # print(1)
             raise KeyError("Provide dataset_path to initialize the dataset")
 
         if kwargs['name'] is None:

@@ -17,25 +17,32 @@ from .utils import BEVBox3D
 class MyDataset(BaseDataset):
     def __init__(self,
                 dataset_path,
-                name,
-                train_folder,
-                test_folder,
-                val_folder,
-                test_result_folder,
+                name='MyDataset',
+                cache_dir='./logs/cache',
+                use_cache=False,
+                test_result_folder='./test',
+                **kwargs
                 ):
-        super().__init__(name=name)
+        super().__init__(dataset_path=dataset_path,
+                         name=name,
+                         cache_dir=cache_dir,
+                         use_cache=use_cache,
+                         test_result_folder=test_result_folder,
+                         **kwargs
+                         )
         # read file lists.
         
         cfg = self.cfg
 
         self.name = cfg.name
-        self.dataset_path = cfg.dataset_path
+        self.dataset_path = dataset_path
         self.num_classes = 2
         self.label_to_names = self.get_label_to_names()
         
-        self.train_folder = train_folder
-        self.val_folder = val_folder
-        self.test_folder = test_folder
+        self.train_folder = cfg.train_folder
+        self.val_folder = cfg.val_folder
+        self.test_folder = cfg.test_folder
+        self.test_result_folder = cfg.test_result_folder
         
         self.train_files = MyDataset.get_path_list_from_folder(self.train_folder)
         self.val_files = MyDataset.get_path_list_from_folder(self.val_folder)
@@ -109,8 +116,10 @@ class MyDataset(BaseDataset):
 
     def is_tested(self, attr):
         # checks whether attr['name'] is already tested.
+        # wtf is this
         pass
-
+    
+    # requires modification after seeing output format
     def save_test_result(self, results, attr):
         # save results['predict_labels'] to file.
         cfg = self.cfg
@@ -138,7 +147,8 @@ class MyDatasetSplit():
         path = self.path_list[idx]
         pcd_loaded = o3d.io.read_point_cloud(path)
         points = np.asarray(pcd_loaded.points).astype(np.float32)
-        label_path = path[:-3] + '.json'
+        label_path = path.replace('pcds', 'ann')
+        label_path = label_path.replace('.pcd', '.json')
         labels = MyDataset.get_label(label_path)
         return {'point': points, 'feat': None, 'label': labels}
 

@@ -7,6 +7,7 @@ from .toronto3d import Toronto3D
 from .customdataset import Custom3D
 from .semantic3d import Semantic3D
 from .inference_dummy import InferenceDummySplit
+from .my_dataset import MyDataset, MyDatasetSplit
 from .samplers import SemSegRandomSampler, SemSegSpatiallyRegularSampler
 from . import utils
 from . import augment
@@ -27,5 +28,5 @@ __all__ = [
     'Custom3D', 'utils', 'augment', 'samplers', 'KITTI', 'Waymo', 'NuScenes',
     'Lyft', 'ShapeNet', 'SemSegRandomSampler', 'InferenceDummySplit',
     'SemSegSpatiallyRegularSampler', 'Argoverse', 'Scannet', 'SunRGBD',
-    'MatterportObjects'
+    'MatterportObjects', 'MyDataset'
 ]

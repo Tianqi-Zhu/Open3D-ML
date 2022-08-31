@@ -98,8 +98,9 @@ class PointRCNN(BaseModel):
         super().__init__(name=name, device=device, **kwargs)
         assert mode == "RPN" or mode == "RCNN"
         self.mode = mode
-
+        print("***")
         self.augmenter = ObjdetAugmentation(self.cfg.augment, seed=self.rng)
+        print("((((((((99")
         self.npoints = npoints
         self.classes = classes
         self.name2lbl = {n: i for i, n in enumerate(classes)}

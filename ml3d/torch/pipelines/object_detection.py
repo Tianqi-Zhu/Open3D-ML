@@ -289,6 +289,9 @@ class ObjectDetection(BasePipeline):
         self.optimizer, self.scheduler = model.get_optimizer(cfg.optimizer)
 
         is_resume = model.cfg.get('is_resume', True)
+        print(is_resume)
+        is_resume1 = model.cfg.get('is_resume')
+        print(is_resume1)
         start_ep = self.load_ckpt(model.cfg.ckpt_path, is_resume=is_resume)
 
         dataset_name = dataset.name if dataset is not None else ''
@@ -476,9 +479,11 @@ class ObjectDetection(BasePipeline):
     def load_ckpt(self, ckpt_path=None, is_resume=True):
         train_ckpt_dir = join(self.cfg.logs_dir, 'checkpoint')
         make_dir(train_ckpt_dir)
-
+        print(ckpt_path)
+        ckpt_path = None
         epoch = 0
         if ckpt_path is None:
+            print("***********")
             ckpt_path = latest_torch_ckpt(train_ckpt_dir)
             if ckpt_path is not None and is_resume:
                 log.info('ckpt_path not given. Restore from the latest ckpt')

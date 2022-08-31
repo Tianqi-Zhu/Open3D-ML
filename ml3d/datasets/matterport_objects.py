@@ -251,7 +251,7 @@ class MatterportObjects(BaseDataset):
 
 
 class MatterportObjectsSplit():
-
+ 
     def __init__(self, dataset, split='train'):
         self.cfg = dataset.cfg
         path_list = dataset.get_split_list(split)
